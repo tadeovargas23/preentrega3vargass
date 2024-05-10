@@ -1,4 +1,4 @@
-// Función para cargar estudiantes desde el almacenamiento local
+
 function cargarEstudiantes() {
     const estudiantesJSON = localStorage.getItem("estudiantes");
     if (estudiantesJSON) {
@@ -8,7 +8,6 @@ function cargarEstudiantes() {
     }
 }
 
-// Función para guardar estudiantes en el almacenamiento local
 function guardarEstudiantes(estudiantes) {
     localStorage.setItem("estudiantes", JSON.stringify(estudiantes));
 }
@@ -22,14 +21,14 @@ function agregarEstudiante() {
     const calificacionesInput = document.getElementById("calificaciones");
 
     const nombre = nombreInput.value;
-    const apellido = apellidoInput.value; // Nuevo
+    const apellido = apellidoInput.value;
     const edad = parseInt(edadInput.value);
     const calificacionesStr = calificacionesInput.value;
     const calificaciones = calificacionesStr.split(",").map(calificacion => parseInt(calificacion));
     
     const estudiante = {
         nombre: nombre,
-        apellido: apellido, // Nuevo
+        apellido: apellido,
         edad: edad,
         calificaciones: calificaciones
     };
@@ -37,7 +36,7 @@ function agregarEstudiante() {
     guardarEstudiantes(estudiantes);
     actualizarResultados();
     nombreInput.value = "";
-    apellidoInput.value = ""; // Nuevo
+    apellidoInput.value = "";
     edadInput.value = "";
     calificacionesInput.value = "";
 }
@@ -47,7 +46,7 @@ function actualizarResultados() {
     resultadosDiv.innerHTML = "";
     estudiantes.forEach(estudiante => {
         const estudianteDiv = document.createElement("div");
-        estudianteDiv.classList.add("resultado"); // Nuevo
+        estudianteDiv.classList.add("resultado");
         estudianteDiv.innerHTML = `
             <p>Nombre: ${estudiante.nombre} ${estudiante.apellido}</p> <!-- Modificado -->
             <p>Edad: ${estudiante.edad}</p>
@@ -59,5 +58,4 @@ function actualizarResultados() {
 
 document.getElementById("agregar-btn").addEventListener("click", agregarEstudiante);
 
-// Al cargar la página, actualizar los resultados
 window.addEventListener("load", actualizarResultados);
